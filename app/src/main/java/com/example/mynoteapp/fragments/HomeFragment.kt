@@ -3,6 +3,7 @@ package com.example.mynoteapp.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.mynoteapp.R
 import com.example.mynoteapp.databinding.FragmentHomeBinding
 
@@ -30,6 +31,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         )
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.fabAddNote.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_newNoteFragment)
+        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
