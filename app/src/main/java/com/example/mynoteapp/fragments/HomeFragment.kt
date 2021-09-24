@@ -13,6 +13,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding
             get() = _binding!!
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
