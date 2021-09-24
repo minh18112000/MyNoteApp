@@ -1,5 +1,6 @@
 package com.example.mynoteapp.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -68,9 +69,35 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
         return binding.root
     }
 
+    private fun deleteNote() {
+        AlertDialog.Builder(activity).apply {
+            setTitle("Delete Note")
+            setMessage("Are you sure want to permanently delete this note?")
+            setPositiveButton("DELETE") { _, _ ->
+                noteViewModel.deleteNote(currentNote)
+
+                // Using directions to navigate to the HomeFragment
+                view?.findNavController()?.navigate(
+                    UpdateNoteFragmentDirections
+                        .actionUpdateNoteFragmentToHomeFragment()
+                )
+            }
+            setNegativeButton("CANCEL", null)
+        }.create().show()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        // add the options menu and inflate the menu resource file
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.update_menu, menu)
+    }
+
+    // Delete and share from the Menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.delete_menu -> deleteNote()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
