@@ -1,6 +1,7 @@
 package com.example.mynoteapp.viewmodel
 
 import android.app.Application
+import android.app.DownloadManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mynoteapp.model.Note
@@ -26,4 +27,5 @@ class NoteViewModel(
 
     fun getAllNotes() = noteRepository.getAllNotes()
 
+    fun searchNote(query: String?) = noteRepository.searchNote(query)
 }

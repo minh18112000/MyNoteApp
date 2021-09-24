@@ -13,7 +13,7 @@ import com.example.mynoteapp.model.Note
 import com.example.mynoteapp.viewmodel.NoteViewModel
 import com.example.noteapp.adapter.NoteAdapter
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
 
     // create a binding object
     private var _binding: FragmentHomeBinding? = null
@@ -94,10 +94,35 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.home_menu, menu)
+
+        val mMenuSearch = menu.findItem(R.id.menu_search).actionView as SearchView
+        mMenuSearch.isSubmitButtonEnabled = false
+        mMenuSearch.setOnQueryTextListener(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if(query != null) {
+            searchNotes(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if(newText != null) {
+            searchNotes(newText)
+        }
+        return true
+    }
+
+    private fun searchNotes(query: String?) {
+        val searchQuery = "%$query%"
+        noteViewModel.searchNote(searchQuery).observe(this, { list ->
+            noteAdapter.differ.submitList(list)
+        })
     }
 }

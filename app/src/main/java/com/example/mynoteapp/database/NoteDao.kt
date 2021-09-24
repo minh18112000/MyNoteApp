@@ -29,4 +29,9 @@ interface NoteDao {
     @Query("SELECT * FROM notes ORDER BY id DESC")
     fun getAllNotes(): LiveData<List<Note>>
 
+    // A query is a request for data or information from a database table or
+    // combination of tables, or a request to perform an action on the data
+    @Query("SELECT * FROM notes WHERE noteTitle LIKE :query OR noteBody LIKE :query")
+    fun searchNote(query: String?): LiveData<List<Note>>
+
 }
