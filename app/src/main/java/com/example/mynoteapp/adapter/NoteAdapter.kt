@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynoteapp.databinding.NoteLayoutAdapterBinding
+import com.example.mynoteapp.fragments.HomeFragmentDirections
 import com.example.mynoteapp.model.Note
 
 
@@ -46,6 +47,11 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         // Set note on RecycleView
         holder.itemBinding.tvNoteTitle.text = currentNote.noteTitle
         holder.itemBinding.tvNoteBody.text = currentNote.noteBody
+
+        holder.itemView.setOnClickListener {
+            val direction = HomeFragmentDirections.actionHomeFragmentToUpdateNoteFragment(currentNote)
+            it.findNavController().navigate(direction)
+        }
 
     }
 

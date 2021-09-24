@@ -50,5 +50,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="note"
+            app:argType="com.example.mynoteapp.model.Note"
+            app:nullable="true" />
     </fragment>
 </navigation>
