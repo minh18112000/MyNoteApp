@@ -1,5 +1,6 @@
 package com.example.noteapp.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mynoteapp.databinding.NoteLayoutAdapterBinding
 import com.example.mynoteapp.fragments.HomeFragmentDirections
 import com.example.mynoteapp.model.Note
+import java.util.*
 
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
@@ -48,8 +50,19 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         holder.itemBinding.tvNoteTitle.text = currentNote.noteTitle
         holder.itemBinding.tvNoteBody.text = currentNote.noteBody
 
+        val random = Random()
+        val color = Color.argb(
+            255,
+            random.nextInt(256),
+            random.nextInt(256),
+            random.nextInt(256)
+        )
+
+        holder.itemBinding.ibColor.setBackgroundColor(color)
+
         holder.itemView.setOnClickListener {
-            val direction = HomeFragmentDirections.actionHomeFragmentToUpdateNoteFragment(currentNote)
+            val direction = HomeFragmentDirections
+                .actionHomeFragmentToUpdateNoteFragment(currentNote)
             it.findNavController().navigate(direction)
         }
 
