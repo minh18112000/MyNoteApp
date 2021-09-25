@@ -1,6 +1,7 @@
 package com.example.mynoteapp.fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -69,6 +70,23 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
         return binding.root
     }
 
+    // creating share Intent
+    private fun getShareIntent(): Intent {
+        val args = UpdateNoteFragmentArgs.fromBundle(requireArguments())
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.setType("text/plain")
+            .putExtra(
+                Intent.EXTRA_TEXT,
+                "Note shared: ${args.note?.noteTitle}, ${args.note?.noteBody}"
+            )
+        return shareIntent
+    }
+
+    // starting an activity with new Intent
+    private fun shareSuccess() {
+        startActivity(getShareIntent())
+    }
+
     private fun deleteNote() {
         AlertDialog.Builder(activity).apply {
             setTitle("Delete Note")
@@ -90,12 +108,17 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
         // add the options menu and inflate the menu resource file
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.update_menu, menu)
+        // showing the Share Menu Item dynamically
+        if(getShareIntent().resolveActivity(requireActivity().packageManager) == null) {
+            menu.findItem(R.id.share_menu).isVisible = false
+        }
     }
 
     // Delete and share from the Menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.delete_menu -> deleteNote()
+            R.id.share_menu -> shareSuccess()
         }
         return super.onOptionsItemSelected(item)
     }
