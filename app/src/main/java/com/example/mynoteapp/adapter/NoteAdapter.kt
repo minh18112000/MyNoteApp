@@ -49,6 +49,7 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         // Set note on RecycleView
         holder.itemBinding.tvNoteTitle.text = currentNote.noteTitle
         holder.itemBinding.tvNoteBody.text = currentNote.noteBody
+        holder.itemBinding.tvNoteDateCreated.text = currentNote.noteDateCreated
 
         val random = Random()
         val color = Color.argb(

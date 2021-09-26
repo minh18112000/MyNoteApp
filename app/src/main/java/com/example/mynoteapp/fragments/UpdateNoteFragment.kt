@@ -12,6 +12,8 @@ import com.example.mynoteapp.databinding.FragmentUpdateNoteBinding
 import com.example.mynoteapp.model.Note
 import com.example.mynoteapp.toast
 import com.example.mynoteapp.viewmodel.NoteViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
 
@@ -49,9 +51,11 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
         binding.fabDone.setOnClickListener {
             val title = binding.etNoteTitleUpdate.text.toString().trim()
             val body = binding.etNoteBodyUpdate.text.toString().trim()
+            val currentDate = SimpleDateFormat("dd/MM hh:mm")
+            val dateCreated = "Updated: ${currentDate.format(Date())}"
 
             if (title.isNotEmpty()) {
-                val note = Note(currentNote.id, title, body)
+                val note = Note(currentNote.id, title, body, dateCreated)
                 noteViewModel.updateNote(note)
 
                 activity?.toast("Note updated!")
@@ -77,7 +81,7 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
         shareIntent.setType("text/plain")
             .putExtra(
                 Intent.EXTRA_TEXT,
-                "Note shared: ${args.note?.noteTitle}, ${args.note?.noteBody}"
+                "Note shared: ${currentNote.noteTitle}, ${currentNote.noteBody}"
             )
         return shareIntent
     }

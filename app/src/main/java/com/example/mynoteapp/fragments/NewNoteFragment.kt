@@ -11,6 +11,8 @@ import com.example.mynoteapp.model.Note
 import com.example.mynoteapp.toast
 import com.example.mynoteapp.viewmodel.NoteViewModel
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class NewNoteFragment : Fragment(R.layout.fragment_new_note) {
@@ -48,11 +50,11 @@ class NewNoteFragment : Fragment(R.layout.fragment_new_note) {
     private fun saveNote(view: View) {
         val noteTitle = binding.etNoteTitle.text.toString().trim()
         val noteBody = binding.etNoteBody.text.toString().trim()
-
+        val currentDate = SimpleDateFormat("dd/MM hh:mm")
+        val noteDateCreated = "Created: ${currentDate.format(Date())}"
         if (noteTitle.isNotEmpty()) {
-
             // Create new note
-            val note = Note(0, noteTitle, noteBody)
+            val note = Note(0, noteTitle, noteBody, noteDateCreated)
 
             noteViewModel.addNote(note)
             Snackbar.make(
