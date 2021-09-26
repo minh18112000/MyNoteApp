@@ -34,4 +34,7 @@ interface NoteDao {
     @Query("SELECT * FROM notes WHERE noteTitle LIKE :query OR noteBody LIKE :query")
     fun searchNote(query: String?): LiveData<List<Note>>
 
+    @Query("SELECT * FROM notes ORDER BY noteTitle ASC")
+    fun sortNoteByTitleAZ(): LiveData<List<Note>>
+
 }

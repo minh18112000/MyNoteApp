@@ -28,4 +28,6 @@ class NoteViewModel(
     fun getAllNotes() = noteRepository.getAllNotes()
 
     fun searchNote(query: String?) = noteRepository.searchNote(query)
+
+    fun sortNoteByTitleAZ() = noteRepository.sortNoteByTitleAZ()
 }

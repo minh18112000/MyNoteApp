@@ -10,6 +10,7 @@ import com.example.mynoteapp.MainActivity
 import com.example.mynoteapp.R
 import com.example.mynoteapp.databinding.FragmentHomeBinding
 import com.example.mynoteapp.model.Note
+import com.example.mynoteapp.toast
 import com.example.mynoteapp.viewmodel.NoteViewModel
 import com.example.noteapp.adapter.NoteAdapter
 
@@ -57,7 +58,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
             it.findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToNewNoteFragment())
         }
-
     }
 
     private fun setUpRecyclerView() {
@@ -100,20 +100,15 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         mMenuSearch.setOnQueryTextListener(this)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(query != null) {
+        if (query != null) {
             searchNotes(query)
         }
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        if(newText != null) {
+        if (newText != null) {
             searchNotes(newText)
         }
         return true
@@ -124,5 +119,23 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         noteViewModel.searchNote(searchQuery).observe(this, { list ->
             noteAdapter.differ.submitList(list)
         })
+    }
+
+    private fun sortNoteByTitleAZ() {
+        noteViewModel.sortNoteByTitleAZ().observe(viewLifecycleOwner, { note ->
+            noteAdapter.differ.submitList(note)
+        })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.sort_menu -> sortNoteByTitleAZ()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
