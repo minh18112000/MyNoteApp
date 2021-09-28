@@ -40,4 +40,8 @@ class NoteViewModel(
     fun sortNoteByCreatedDateNewestFirst() = noteRepository.sortNoteByCreatedDateNewestFirst()
 
     fun sortNoteByCreatedDateOldestFirst() = noteRepository.sortNoteByCreatedDateOldestFirst()
+
+    fun filterImportantNote() = noteRepository.filterImportantNote()
+
+    fun filterNotImportantNote() = noteRepository.filterNotImportantNote()
 }

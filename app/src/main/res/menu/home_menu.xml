@@ -41,6 +41,21 @@
                 android:id="@+id/sort_by_created_date_oldest_first"
                 android:title="Created date (oldest first)" />
         </menu>
+    </item>
 
+    <item
+        android:id="@+id/filter_menu"
+        android:icon="@drawable/ic_filter"
+        android:title="Filter"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/filter_by_important_note"
+                android:title="Important" />
+            <item
+                android:id="@+id/filter_by_not_important_note"
+                android:title="Not important" />
+        </menu>
     </item>
 </menu>

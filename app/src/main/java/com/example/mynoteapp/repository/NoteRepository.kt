@@ -27,4 +27,7 @@ class NoteRepository(private val db: NoteDatabase) {
 
     fun sortNoteByCreatedDateOldestFirst() = db.getNoteDao().sortNoteByCreatedDateOldestFirst()
 
+    fun filterImportantNote() = db.getNoteDao().filterImportantNote()
+
+    fun filterNotImportantNote() = db.getNoteDao().filterNotImportantNote()
 }
