@@ -47,6 +47,7 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
         // set title and body of note is updated
         binding.etNoteTitleUpdate.setText(currentNote.noteTitle)
         binding.etNoteBodyUpdate.setText(currentNote.noteBody)
+        binding.cbNoteImportantUpdated.isChecked = currentNote.isImportant == 1
 
         binding.fabDone.setOnClickListener {
             val title = binding.etNoteTitleUpdate.text.toString().trim()
@@ -54,8 +55,15 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
             val currentDate = SimpleDateFormat("dd/MM hh:mm")
             val dateCreated = "Updated: ${currentDate.format(Date())}"
             val isUpdated = 1
+            val isImportant = binding.cbNoteImportantUpdated.isChecked
+            val important: Int
+            if(isImportant) {
+                important = 1
+            } else {
+                important = 0
+            }
             if (title.isNotEmpty()) {
-                val note = Note(currentNote.id, title, body, dateCreated, isUpdated)
+                val note = Note(currentNote.id, title, body, dateCreated, isUpdated,important)
                 noteViewModel.updateNote(note)
 
                 activity?.toast("Note updated!")

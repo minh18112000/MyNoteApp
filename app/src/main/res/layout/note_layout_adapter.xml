@@ -37,6 +37,12 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
+                <ImageView
+                    android:id="@+id/imgNoteImportant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_important" />
+
                 <View
                     android:id="@+id/ib_color"
                     android:layout_width="12dp"

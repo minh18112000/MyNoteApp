@@ -26,6 +26,14 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <CheckBox
+                    android:id="@+id/cbNoteImportantUpdated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Important"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
                 <EditText
                     android:id="@+id/etNoteTitleUpdate"
                     android:layout_width="match_parent"

@@ -53,9 +53,16 @@ class NewNoteFragment : Fragment(R.layout.fragment_new_note) {
         val currentDate = SimpleDateFormat("dd/MM hh:mm")
         val noteDateCreated = "Created: ${currentDate.format(Date())}"
         val isUpdated = 0
+        val isImportant = binding.cbNoteImportant.isChecked
+        val noteImportant: Int
+        if(isImportant) {
+            noteImportant = 1
+        } else {
+            noteImportant = 0
+        }
         if (noteTitle.isNotEmpty()) {
             // Create new note
-            val note = Note(0, noteTitle, noteBody, noteDateCreated, isUpdated)
+            val note = Note(0, noteTitle, noteBody, noteDateCreated, isUpdated, noteImportant)
 
             noteViewModel.addNote(note)
             Snackbar.make(

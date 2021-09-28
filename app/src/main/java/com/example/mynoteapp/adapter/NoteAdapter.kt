@@ -2,7 +2,9 @@ package com.example.noteapp.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -50,7 +52,11 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         holder.itemBinding.tvNoteTitle.text = currentNote.noteTitle
         holder.itemBinding.tvNoteBody.text = currentNote.noteBody
         holder.itemBinding.tvNoteDateCreated.text = currentNote.noteDateCreated
-
+        if(currentNote.isImportant == 1) {
+            holder.itemBinding.imgNoteImportant.visibility = View.VISIBLE
+        } else {
+            holder.itemBinding.imgNoteImportant.visibility = View.GONE
+        }
         val random = Random()
         val color = Color.argb(
             255,
