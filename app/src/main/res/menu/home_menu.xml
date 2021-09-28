@@ -33,6 +33,13 @@
                 android:id="@+id/sort_by_updated_date_oldest_first"
                 android:title="Updated date (oldest first)" />
 
+            <item
+                android:id="@+id/sort_by_created_date_newest_first"
+                android:title="Created date (newest first)" />
+
+            <item
+                android:id="@+id/sort_by_created_date_oldest_first"
+                android:title="Created date (oldest first)" />
         </menu>
 
     </item>

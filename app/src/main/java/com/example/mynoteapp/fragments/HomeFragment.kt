@@ -146,12 +146,29 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
                 noteAdapter.differ.submitList(note)
             })
     }
+
+    private fun sortNoteByCreatedDateNewestFirst() {
+        noteViewModel.sortNoteByCreatedDateNewestFirst()
+            .observe(viewLifecycleOwner, { note ->
+                noteAdapter.differ.submitList(note)
+            })
+    }
+
+    private fun sortNoteByCreatedDateOldestFirst() {
+        noteViewModel.sortNoteByCreatedDateOldestFirst()
+            .observe(viewLifecycleOwner, { note ->
+                noteAdapter.differ.submitList(note)
+            })
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.sort_by_title_az -> sortNoteByTitleAZ()
             R.id.sort_by_title_za -> sortNoteByTitleZA()
             R.id.sort_by_updated_date_newest_first -> sortNoteByUpdatedDateNewestFirst()
             R.id.sort_by_updated_date_oldest_first -> sortNoteByUpdatedDateOldestFirst()
+            R.id.sort_by_created_date_newest_first -> sortNoteByCreatedDateNewestFirst()
+            R.id.sort_by_created_date_oldest_first -> sortNoteByCreatedDateOldestFirst()
         }
         return super.onOptionsItemSelected(item)
     }
