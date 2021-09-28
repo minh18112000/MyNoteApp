@@ -30,4 +30,6 @@ class NoteViewModel(
     fun searchNote(query: String?) = noteRepository.searchNote(query)
 
     fun sortNoteByTitleAZ() = noteRepository.sortNoteByTitleAZ()
+
+    fun sortNoteByTitleZA() = noteRepository.sortNoteByTitleZA()
 }

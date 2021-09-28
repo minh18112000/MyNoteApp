@@ -127,9 +127,16 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         })
     }
 
+    private fun sortNoteByTitleZA() {
+        noteViewModel.sortNoteByTitleZA().observe(viewLifecycleOwner, { note ->
+            noteAdapter.differ.submitList(note)
+        })
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.sort_menu -> sortNoteByTitleAZ()
+            R.id.sort_by_note_title_AZ -> sortNoteByTitleAZ()
+            R.id.sort_by_note_title_ZA -> sortNoteByTitleZA()
         }
         return super.onOptionsItemSelected(item)
     }

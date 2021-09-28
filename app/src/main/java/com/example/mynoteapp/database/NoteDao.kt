@@ -37,4 +37,8 @@ interface NoteDao {
     @Query("SELECT * FROM notes ORDER BY noteTitle ASC")
     fun sortNoteByTitleAZ(): LiveData<List<Note>>
 
+    @Query("SELECT * FROM notes ORDER BY noteTitle DESC")
+    fun sortNoteByTitleZA(): LiveData<List<Note>>
+
+
 }

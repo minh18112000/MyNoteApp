@@ -10,4 +10,6 @@ class NoteRepository(private val db: NoteDatabase) {
     fun getAllNotes() = db.getNoteDao().getAllNotes()
     fun searchNote(query: String?) = db.getNoteDao().searchNote(query)
     fun sortNoteByTitleAZ() = db.getNoteDao().sortNoteByTitleAZ()
+    fun sortNoteByTitleZA() = db.getNoteDao().sortNoteByTitleZA()
+
 }

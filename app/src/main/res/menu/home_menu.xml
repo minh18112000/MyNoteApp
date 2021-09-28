@@ -12,6 +12,20 @@
     <item
         android:id="@+id/sort_menu"
         android:icon="@drawable/ic_sort"
-        android:title="Sort by title (A-Z)"
-        app:showAsAction="ifRoom"/>
+        android:title="Sort"
+        app:showAsAction="ifRoom">
+
+        <menu>
+
+            <item
+                android:id="@+id/sort_by_note_title_AZ"
+                android:title="Title (A-Z)" />
+
+            <item
+                android:id="@+id/sort_by_note_title_ZA"
+                android:title="Title (Z-A)" />
+
+        </menu>
+
+    </item>
 </menu>
