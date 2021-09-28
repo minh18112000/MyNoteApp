@@ -53,9 +53,9 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
             val body = binding.etNoteBodyUpdate.text.toString().trim()
             val currentDate = SimpleDateFormat("dd/MM hh:mm")
             val dateCreated = "Updated: ${currentDate.format(Date())}"
-
+            val isUpdated = 1
             if (title.isNotEmpty()) {
-                val note = Note(currentNote.id, title, body, dateCreated)
+                val note = Note(currentNote.id, title, body, dateCreated, isUpdated)
                 noteViewModel.updateNote(note)
 
                 activity?.toast("Note updated!")

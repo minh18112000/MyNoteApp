@@ -32,4 +32,8 @@ class NoteViewModel(
     fun sortNoteByTitleAZ() = noteRepository.sortNoteByTitleAZ()
 
     fun sortNoteByTitleZA() = noteRepository.sortNoteByTitleZA()
+
+    fun sortNoteByUpdatedDateNewestFirst() = noteRepository.sortNoteByUpdatedDateNewestFirst()
+
+    fun sortNoteByUpdatedDateOldestFirst() = noteRepository.sortNoteByUpdatedDateOldestFirst()
 }

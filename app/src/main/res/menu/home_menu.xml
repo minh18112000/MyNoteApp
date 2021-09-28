@@ -18,12 +18,20 @@
         <menu>
 
             <item
-                android:id="@+id/sort_by_note_title_AZ"
+                android:id="@+id/sort_by_title_az"
                 android:title="Title (A-Z)" />
 
             <item
-                android:id="@+id/sort_by_note_title_ZA"
+                android:id="@+id/sort_by_title_za"
                 android:title="Title (Z-A)" />
+
+            <item
+                android:id="@+id/sort_by_updated_date_newest_first"
+                android:title="Updated date (newest first)" />
+
+            <item
+                android:id="@+id/sort_by_updated_date_oldest_first"
+                android:title="Updated date (oldest first)" />
 
         </menu>
 

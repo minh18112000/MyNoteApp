@@ -52,9 +52,10 @@ class NewNoteFragment : Fragment(R.layout.fragment_new_note) {
         val noteBody = binding.etNoteBody.text.toString().trim()
         val currentDate = SimpleDateFormat("dd/MM hh:mm")
         val noteDateCreated = "Created: ${currentDate.format(Date())}"
+        val isUpdated = 0
         if (noteTitle.isNotEmpty()) {
             // Create new note
-            val note = Note(0, noteTitle, noteBody, noteDateCreated)
+            val note = Note(0, noteTitle, noteBody, noteDateCreated, isUpdated)
 
             noteViewModel.addNote(note)
             Snackbar.make(
