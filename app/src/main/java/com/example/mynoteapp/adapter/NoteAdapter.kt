@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mynoteapp.databinding.NoteLayoutAdapterBinding
 import com.example.mynoteapp.fragments.HomeFragmentDirections
 import com.example.mynoteapp.model.Note
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -47,11 +47,13 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         // Get current note
         val currentNote = differ.currentList[position]
+        val sdf = SimpleDateFormat("dd/MM hh:mm")
+        val resultDate = Date(currentNote.noteDateCreated)
 
         // Set note on RecycleView
         holder.itemBinding.tvNoteTitle.text = currentNote.noteTitle
         holder.itemBinding.tvNoteBody.text = currentNote.noteBody
-        holder.itemBinding.tvNoteDateCreated.text = currentNote.noteDateCreated
+        holder.itemBinding.tvNoteDateCreated.text = sdf.format(resultDate)
         if(currentNote.isImportant == 1) {
             holder.itemBinding.imgNoteImportant.visibility = View.VISIBLE
         } else {

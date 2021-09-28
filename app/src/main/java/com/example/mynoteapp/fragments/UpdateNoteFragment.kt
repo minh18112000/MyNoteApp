@@ -12,8 +12,7 @@ import com.example.mynoteapp.databinding.FragmentUpdateNoteBinding
 import com.example.mynoteapp.model.Note
 import com.example.mynoteapp.toast
 import com.example.mynoteapp.viewmodel.NoteViewModel
-import java.text.SimpleDateFormat
-import java.util.*
+import java.util.concurrent.TimeUnit
 
 class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
 
@@ -52,8 +51,9 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
         binding.fabDone.setOnClickListener {
             val title = binding.etNoteTitleUpdate.text.toString().trim()
             val body = binding.etNoteBodyUpdate.text.toString().trim()
-            val currentDate = SimpleDateFormat("dd/MM hh:mm")
-            val dateCreated = "Updated: ${currentDate.format(Date())}"
+            val dateUpdated = System.currentTimeMillis()
+            val dateCreated = currentNote.noteDateCreated
+            val totalTimeFromNoteCreated = System.currentTimeMillis() - dateCreated
             val isUpdated = 1
             val isImportant = binding.cbNoteImportantUpdated.isChecked
             val important: Int
@@ -63,11 +63,10 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
                 important = 0
             }
             if (title.isNotEmpty()) {
-                val note = Note(currentNote.id, title, body, dateCreated, isUpdated,important)
+                val note = Note(currentNote.id, title, body, dateUpdated, isUpdated,important, totalTimeFromNoteCreated)
                 noteViewModel.updateNote(note)
-
+                val minutes = TimeUnit.MINUTES.convert(totalTimeFromNoteCreated, TimeUnit.MILLISECONDS)
                 activity?.toast("Note updated!")
-
                 // Using directions to navigate to the HomeFragment
                 view?.findNavController()?.navigate(
                     UpdateNoteFragmentDirections.actionUpdateNoteFragmentToHomeFragment()

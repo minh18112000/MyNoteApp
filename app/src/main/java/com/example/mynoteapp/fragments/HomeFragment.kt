@@ -10,7 +10,6 @@ import com.example.mynoteapp.MainActivity
 import com.example.mynoteapp.R
 import com.example.mynoteapp.databinding.FragmentHomeBinding
 import com.example.mynoteapp.model.Note
-import com.example.mynoteapp.toast
 import com.example.mynoteapp.viewmodel.NoteViewModel
 import com.example.noteapp.adapter.NoteAdapter
 
