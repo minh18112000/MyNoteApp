@@ -14,6 +14,9 @@ import com.example.mynoteapp.databinding.FragmentHomeBinding
 import com.example.mynoteapp.model.Note
 import com.example.mynoteapp.viewmodel.NoteViewModel
 import com.example.noteapp.adapter.NoteAdapter
+import java.util.concurrent.TimeUnit
+
+private val ONE_DAY_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)
 
 class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
 
@@ -176,27 +179,30 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
     private fun filterNoteByDayAgo() {
         val currentTime = System.currentTimeMillis()
-        noteViewModel.filterNoteByDayAgo(currentTime).observe(viewLifecycleOwner, { note ->
-            noteAdapter.differ.submitList(note)
-        })
+        noteViewModel.filterNoteByDayAgo(currentTime, ONE_DAY_MILLIS)
+            .observe(viewLifecycleOwner, { note ->
+                noteAdapter.differ.submitList(note)
+            })
     }
 
     private fun filterNoteByWeekAgo() {
         val currentTime = System.currentTimeMillis()
-        noteViewModel.filterNoteByWeekAgo(currentTime).observe(viewLifecycleOwner, { note ->
-            noteAdapter.differ.submitList(note)
-        })
+        noteViewModel.filterNoteByWeekAgo(currentTime, ONE_DAY_MILLIS)
+            .observe(viewLifecycleOwner, { note ->
+                noteAdapter.differ.submitList(note)
+            })
     }
 
     private fun filterNoteByMonthAgo() {
         val currentTime = System.currentTimeMillis()
-        noteViewModel.filterNoteByWeekAgo(currentTime).observe(viewLifecycleOwner, { note ->
-            noteAdapter.differ.submitList(note)
-        })
+        noteViewModel.filterNoteByMonthAgo(currentTime, ONE_DAY_MILLIS)
+            .observe(viewLifecycleOwner, { note ->
+                noteAdapter.differ.submitList(note)
+            })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.sort_by_title_az -> sortNoteByTitleAZ()
             R.id.sort_by_title_za -> sortNoteByTitleZA()
             R.id.sort_by_updated_date_newest_first -> sortNoteByUpdatedDateNewestFirst()

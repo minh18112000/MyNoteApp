@@ -53,7 +53,6 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
             val body = binding.etNoteBodyUpdate.text.toString().trim()
             val dateUpdated = System.currentTimeMillis()
             val dateCreated = currentNote.noteDateCreated
-            val totalTimeFromNoteCreated = System.currentTimeMillis() - dateCreated
             val isUpdated = 1
             val isImportant = binding.cbNoteImportantUpdated.isChecked
             val important: Int
@@ -63,9 +62,8 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note) {
                 important = 0
             }
             if (title.isNotEmpty()) {
-                val note = Note(currentNote.id, title, body, dateUpdated, isUpdated,important, totalTimeFromNoteCreated)
+                val note = Note(currentNote.id, title, body, dateUpdated, isUpdated,important)
                 noteViewModel.updateNote(note)
-                val minutes = TimeUnit.MINUTES.convert(totalTimeFromNoteCreated, TimeUnit.MILLISECONDS)
                 activity?.toast("Note updated!")
                 // Using directions to navigate to the HomeFragment
                 view?.findNavController()?.navigate(

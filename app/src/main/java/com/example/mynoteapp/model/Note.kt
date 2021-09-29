@@ -18,6 +18,5 @@ data class Note(
     val noteDateCreated: Long,
     // 1 == TRUE, 0 == FALSE
     val isUpdated: Int,
-    val isImportant: Int,
-    val totalTimeFromNoteCreated: Long
+    val isImportant: Int
 ) : Parcelable
