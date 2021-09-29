@@ -201,6 +201,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
             })
     }
 
+    private fun noSort() {
+        noteViewModel.getAllNotes().observe(viewLifecycleOwner, { note ->
+            noteAdapter.differ.submitList(note)
+        })
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.sort_by_title_az -> sortNoteByTitleAZ()
@@ -214,6 +220,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
             R.id.filter_by_date_created_day_ago -> filterNoteByDayAgo()
             R.id.filter_by_date_created_week_ago -> filterNoteByWeekAgo()
             R.id.filter_by_date_created_month_ago -> filterNoteByMonthAgo()
+            R.id.no_sort -> noSort()
         }
         return super.onOptionsItemSelected(item)
     }

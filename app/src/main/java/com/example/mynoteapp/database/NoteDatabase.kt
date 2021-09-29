@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.mynoteapp.model.Note
 
 // declare the entities for the database and set the version number
-@Database(entities = [Note::class], version = 7)
+@Database(entities = [Note::class], version = 1, exportSchema = false)
 abstract class NoteDatabase : RoomDatabase() {
 
     abstract fun getNoteDao(): NoteDao
@@ -17,17 +17,19 @@ abstract class NoteDatabase : RoomDatabase() {
     // Since the only purpose of this class is to provide a database,
     // there is no reason to ever instantiate it.
     companion object {
-        // The value of a volatile variable will never be cached, and
-        // all writes and reads will be done to and from the main memory
+        // Singleton prevents multiple instances of database opening at the
+        // same time.
         @Volatile
         private var instance: NoteDatabase? = null
         private val LOCK = Any()
 
+        // if the instance is not null, then return it,
+        // if it is, then create the database
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
-            instance ?: createDatasbe(context).also { instance = it }
+            instance ?: createDatabase(context).also { instance = it }
         }
 
-        private fun createDatasbe(context: Context) = Room.databaseBuilder(
+        private fun createDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
             NoteDatabase::class.java,
             "note_db"

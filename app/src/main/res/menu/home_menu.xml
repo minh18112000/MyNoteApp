@@ -40,6 +40,9 @@
             <item
                 android:id="@+id/sort_by_created_date_oldest_first"
                 android:title="Created date (oldest first)" />
+            <item
+                android:id="@+id/no_sort"
+                android:title="No sort" />
         </menu>
     </item>
 
