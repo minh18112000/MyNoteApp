@@ -42,16 +42,16 @@ interface NoteDao {
     @Query("SELECT * FROM notes ORDER BY noteTitle DESC")
     fun sortNoteByTitleZA(): LiveData<List<Note>>
 
-    @Query("SELECT * FROM notes WHERE isUpdated = 1 ORDER BY noteDateCreated ASC")
+    @Query("SELECT * FROM notes ORDER BY noteDateUpdated DESC")
     fun sortNoteByUpdatedDateNewestFirst(): LiveData<List<Note>>
 
-    @Query("SELECT * FROM notes WHERE isUpdated = 1 ORDER BY noteDateCreated DESC")
+    @Query("SELECT * FROM notes ORDER BY noteDateUpdated ASC")
     fun sortNoteByUpdatedDateOldestFirst(): LiveData<List<Note>>
 
-    @Query("SELECT * FROM notes WHERE isUpdated = 0 ORDER BY noteDateCreated ASC")
+    @Query("SELECT * FROM notes ORDER BY noteDateCreated DESC")
     fun sortNoteByCreatedDateNewestFirst(): LiveData<List<Note>>
 
-    @Query("SELECT * FROM notes WHERE isUpdated = 0 ORDER BY noteDateCreated DESC")
+    @Query("SELECT * FROM notes ORDER BY noteDateCreated ASC")
     fun sortNoteByCreatedDateOldestFirst(): LiveData<List<Note>>
 
     @Query("SELECT * FROM notes WHERE isImportant = 1")

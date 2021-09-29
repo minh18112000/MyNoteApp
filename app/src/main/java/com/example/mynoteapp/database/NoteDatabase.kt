@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.mynoteapp.model.Note
 
 // declare the entities for the database and set the version number
-@Database(entities = [Note::class], version = 6)
+@Database(entities = [Note::class], version = 7)
 abstract class NoteDatabase : RoomDatabase() {
 
     abstract fun getNoteDao(): NoteDao

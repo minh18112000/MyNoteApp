@@ -48,7 +48,6 @@ class NewNoteFragment : Fragment(R.layout.fragment_new_note) {
         val noteTitle = binding.etNoteTitle.text.toString().trim()
         val noteBody = binding.etNoteBody.text.toString().trim()
         val noteDateCreated = System.currentTimeMillis()
-        val isUpdated = 0
         val isImportant = binding.cbNoteImportant.isChecked
         val noteImportant: Int
         if(isImportant) {
@@ -58,7 +57,7 @@ class NewNoteFragment : Fragment(R.layout.fragment_new_note) {
         }
         if (noteTitle.isNotEmpty()) {
             // Create new note
-            val note = Note(0, noteTitle, noteBody, noteDateCreated, isUpdated, noteImportant)
+            val note = Note(0, noteTitle, noteBody, noteDateCreated, noteDateCreated, noteImportant)
 
             noteViewModel.addNote(note)
             Snackbar.make(

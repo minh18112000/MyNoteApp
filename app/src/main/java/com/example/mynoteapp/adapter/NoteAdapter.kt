@@ -48,15 +48,16 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         // Get current note
         val currentNote = differ.currentList[position]
         val sdf = SimpleDateFormat("dd/MM hh:mm")
-        val resultDate = Date(currentNote.noteDateCreated)
+        val noteDateCreated = Date(currentNote.noteDateCreated)
+        val noteDateUpdated = Date(currentNote.noteDateUpdated)
 
         // Set note on RecycleView
         holder.itemBinding.tvNoteTitle.text = currentNote.noteTitle
         holder.itemBinding.tvNoteBody.text = currentNote.noteBody
-        if (currentNote.isUpdated == 1) {
-            holder.itemBinding.tvNoteDateCreated.text = "Updated: ${sdf.format(resultDate)}"
+        if (currentNote.noteDateCreated != currentNote.noteDateUpdated) {
+            holder.itemBinding.tvNoteDateCreated.text = "Updated: ${sdf.format(noteDateUpdated)}"
         } else {
-            holder.itemBinding.tvNoteDateCreated.text = "Created: ${sdf.format(resultDate)}"
+            holder.itemBinding.tvNoteDateCreated.text = "Created: ${sdf.format(noteDateCreated)}"
         }
         if (currentNote.isImportant == 1) {
             holder.itemBinding.imgNoteImportant.visibility = View.VISIBLE
