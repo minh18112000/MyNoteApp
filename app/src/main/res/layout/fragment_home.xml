@@ -18,13 +18,12 @@
         android:backgroundTint="@color/colorPrimary"
         android:clickable="true"
         android:contentDescription="@string/image"
+        android:src="@drawable/ic_add"
         android:tintMode="@color/white"
         app:borderWidth="0dp"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_add"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -63,6 +62,4 @@
             android:textSize="18sp" />
 
     </androidx.cardview.widget.CardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

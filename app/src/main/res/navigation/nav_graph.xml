@@ -24,6 +24,12 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/newNoteFragment"
@@ -55,4 +61,14 @@
             app:argType="com.example.mynoteapp.model.Note"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.mynoteapp.fragments.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.mynoteapp.fragments.SettingFragment"
+        android:label="Setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

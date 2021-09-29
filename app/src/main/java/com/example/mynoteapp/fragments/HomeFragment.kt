@@ -6,7 +6,10 @@ import android.view.animation.Transformation
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Transformations
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mynoteapp.MainActivity
 import com.example.mynoteapp.R
