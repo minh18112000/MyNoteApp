@@ -2,8 +2,10 @@ package com.example.mynoteapp.fragments
 
 import android.os.Bundle
 import android.view.*
+import android.view.animation.Transformation
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Transformations
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mynoteapp.MainActivity
@@ -135,8 +137,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     private fun sortNoteByUpdatedDateNewestFirst() {
         noteViewModel.sortNoteByUpdatedDateNewestFirst()
             .observe(viewLifecycleOwner, { note ->
-            noteAdapter.differ.submitList(note)
-        })
+                noteAdapter.differ.submitList(note)
+            })
     }
 
     private fun sortNoteByUpdatedDateOldestFirst() {
@@ -172,6 +174,27 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         })
     }
 
+    private fun filterNoteByDayAgo() {
+        val currentTime = System.currentTimeMillis()
+        noteViewModel.filterNoteByDayAgo(currentTime).observe(viewLifecycleOwner, { note ->
+            noteAdapter.differ.submitList(note)
+        })
+    }
+
+    private fun filterNoteByWeekAgo() {
+        val currentTime = System.currentTimeMillis()
+        noteViewModel.filterNoteByWeekAgo(currentTime).observe(viewLifecycleOwner, { note ->
+            noteAdapter.differ.submitList(note)
+        })
+    }
+
+    private fun filterNoteByMonthAgo() {
+        val currentTime = System.currentTimeMillis()
+        noteViewModel.filterNoteByWeekAgo(currentTime).observe(viewLifecycleOwner, { note ->
+            noteAdapter.differ.submitList(note)
+        })
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.sort_by_title_az -> sortNoteByTitleAZ()
@@ -182,6 +205,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
             R.id.sort_by_created_date_oldest_first -> sortNoteByCreatedDateOldestFirst()
             R.id.filter_by_important_note -> filterImportantNote()
             R.id.filter_by_not_important_note -> filterNotImportantNote()
+            R.id.filter_by_date_created_day_ago -> filterNoteByDayAgo()
+            R.id.filter_by_date_created_week_ago -> filterNoteByWeekAgo()
+            R.id.filter_by_date_created_month_ago -> filterNoteByMonthAgo()
         }
         return super.onOptionsItemSelected(item)
     }

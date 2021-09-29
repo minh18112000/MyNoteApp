@@ -53,7 +53,11 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         // Set note on RecycleView
         holder.itemBinding.tvNoteTitle.text = currentNote.noteTitle
         holder.itemBinding.tvNoteBody.text = currentNote.noteBody
-        holder.itemBinding.tvNoteDateCreated.text = sdf.format(resultDate)
+        if(currentNote.isUpdated == 1) {
+            holder.itemBinding.tvNoteDateCreated.text = "Updated: ${sdf.format(resultDate)}"
+        } else {
+            holder.itemBinding.tvNoteDateCreated.text = "Created: ${sdf.format(resultDate)}"
+        }
         if(currentNote.isImportant == 1) {
             holder.itemBinding.imgNoteImportant.visibility = View.VISIBLE
         } else {

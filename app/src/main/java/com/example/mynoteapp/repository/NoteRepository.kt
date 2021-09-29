@@ -30,4 +30,10 @@ class NoteRepository(private val db: NoteDatabase) {
     fun filterImportantNote() = db.getNoteDao().filterImportantNote()
 
     fun filterNotImportantNote() = db.getNoteDao().filterNotImportantNote()
+
+    fun filterNoteByDayAgo(currentTime: Long) = db.getNoteDao().filterNoteByDayAgo(currentTime)
+
+    fun filterNoteByWeekAgo(currentTime: Long) = db.getNoteDao().filterNoteByWeekAgo(currentTime)
+
+    fun filterNoteByMonthAgo(currentTime: Long) = db.getNoteDao().filterNoteByMonthAgo(currentTime)
 }

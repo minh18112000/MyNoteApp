@@ -44,4 +44,10 @@ class NoteViewModel(
     fun filterImportantNote() = noteRepository.filterImportantNote()
 
     fun filterNotImportantNote() = noteRepository.filterNotImportantNote()
+
+    fun filterNoteByDayAgo(currentTime: Long) = noteRepository.filterNoteByDayAgo(currentTime)
+
+    fun filterNoteByWeekAgo(currentTime: Long) = noteRepository.filterNoteByWeekAgo(currentTime)
+
+    fun filterNoteByMonthAgo(currentTime: Long) = noteRepository.filterNoteByMonthAgo(currentTime)
 }

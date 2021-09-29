@@ -3,6 +3,7 @@ package com.example.mynoteapp.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.mynoteapp.model.Note
+import java.util.concurrent.TimeUnit
 
 /*
  A data access object (DAO) to map Kotlin functions to SQL queries
@@ -11,6 +12,7 @@ import com.example.mynoteapp.model.Note
  SQL queries. You define those mappings in a DAO using annotations, and
  Room creates the necessary code.
 */
+
 @Dao
 interface NoteDao {
 
@@ -57,4 +59,13 @@ interface NoteDao {
 
     @Query("SELECT * FROM notes WHERE isImportant = 0")
     fun filterNotImportantNote(): LiveData<List<Note>>
+
+    @Query("SELECT * FROM notes WHERE :currentTime - noteDateCreated < 86400000")
+    fun filterNoteByDayAgo(currentTime: Long) : LiveData<List<Note>>
+
+    @Query("SELECT * FROM notes WHERE :currentTime - noteDateCreated < 604800000")
+    fun filterNoteByWeekAgo(currentTime: Long) : LiveData<List<Note>>
+
+    @Query("SELECT * FROM notes WHERE :currentTime - noteDateCreated < 2592000000")
+    fun filterNoteByMonthAgo(currentTime: Long) : LiveData<List<Note>>
 }

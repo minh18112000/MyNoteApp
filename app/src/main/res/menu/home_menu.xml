@@ -56,6 +56,15 @@
             <item
                 android:id="@+id/filter_by_not_important_note"
                 android:title="Not important" />
+            <item
+                android:id="@+id/filter_by_date_created_day_ago"
+                android:title="A day ago" />
+            <item
+                android:id="@+id/filter_by_date_created_week_ago"
+                android:title="A week ago" />
+            <item
+                android:id="@+id/filter_by_date_created_month_ago"
+                android:title="A month ago" />
         </menu>
     </item>
 </menu>
