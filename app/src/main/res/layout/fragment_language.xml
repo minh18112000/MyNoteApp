@@ -3,14 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SettingFragment">
+    tools:context=".fragments.LanguageFragment">
 
     <RadioButton
-        android:id="@+id/rbLanguage"
+        android:id="@+id/rbVietnamese"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/setting_language"
+        android:text="@string/language_vietnamese"
         android:checked="true"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+
+    <RadioButton
+        android:id="@+id/rbEnglish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/language_english"
         android:textStyle="bold"
         android:textSize="18sp"/>
 </RadioGroup>
