@@ -63,9 +63,9 @@ interface NoteDao {
     @Query("SELECT * FROM notes WHERE :currentTime - noteDateCreated < :ONE_DAY_MILLIS")
     fun filterNoteByDayAgo(currentTime: Long, ONE_DAY_MILLIS: Long): LiveData<List<Note>>
 
-    @Query("SELECT * FROM notes WHERE :currentTime - noteDateCreated < :ONE_DAY_MILLIS*7")
-    fun filterNoteByWeekAgo(currentTime: Long, ONE_DAY_MILLIS: Long): LiveData<List<Note>>
+    @Query("SELECT * FROM notes WHERE :currentTime - noteDateCreated < :ONE_WEEK_MILLIS")
+    fun filterNoteByWeekAgo(currentTime: Long, ONE_WEEK_MILLIS: Long): LiveData<List<Note>>
 
-    @Query("SELECT * FROM notes WHERE :currentTime - noteDateCreated < :ONE_DAY_MILLIS*30")
-    fun filterNoteByMonthAgo(currentTime: Long, ONE_DAY_MILLIS: Long): LiveData<List<Note>>
+    @Query("SELECT * FROM notes WHERE :currentTime - noteDateCreated < :ONE_MONTH_MILLIS")
+    fun filterNoteByMonthAgo(currentTime: Long, ONE_MONTH_MILLIS: Long): LiveData<List<Note>>
 }

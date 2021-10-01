@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="200"
-                    android:text="Note title"
+                    android:text="@string/note_title"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -41,7 +41,8 @@
                     android:id="@+id/imgNoteImportant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_important" />
+                    android:src="@drawable/ic_important"
+                    android:contentDescription="@string/important" />
 
                 <View
                     android:id="@+id/ib_color"
@@ -64,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:maxHeight="170dp"
-                    android:text="Type something..."
+                    android:text="@string/note_body"
                     android:textColor="@color/hintColor"
                     android:textSize="16sp" />
 
@@ -73,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Date created" />
+                    android:text="@string/date_created" />
 
             </LinearLayout>
         </LinearLayout>

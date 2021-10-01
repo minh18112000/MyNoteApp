@@ -20,6 +20,8 @@ import com.example.noteapp.adapter.NoteAdapter
 import java.util.concurrent.TimeUnit
 
 private val ONE_DAY_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)
+private val ONE_WEEK_MILLIS = ONE_DAY_MILLIS*7
+private val ONE_MONTH_MILLIS = ONE_DAY_MILLIS*30
 
 class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
 
@@ -190,7 +192,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
     private fun filterNoteByWeekAgo() {
         val currentTime = System.currentTimeMillis()
-        noteViewModel.filterNoteByWeekAgo(currentTime, ONE_DAY_MILLIS)
+        noteViewModel.filterNoteByWeekAgo(currentTime, ONE_WEEK_MILLIS)
             .observe(viewLifecycleOwner, { note ->
                 noteAdapter.differ.submitList(note)
             })
@@ -198,7 +200,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
     private fun filterNoteByMonthAgo() {
         val currentTime = System.currentTimeMillis()
-        noteViewModel.filterNoteByMonthAgo(currentTime, ONE_DAY_MILLIS)
+        noteViewModel.filterNoteByMonthAgo(currentTime, ONE_MONTH_MILLIS)
             .observe(viewLifecycleOwner, { note ->
                 noteAdapter.differ.submitList(note)
             })

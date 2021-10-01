@@ -81,7 +81,7 @@
         android:label="Language"
         tools:layout="@layout/fragment_language">
         <action
-            android:id="@+id/action_languageFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
+            android:id="@+id/action_languageFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
