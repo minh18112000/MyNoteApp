@@ -6,6 +6,15 @@ In this app, I use:
 - Safe Args
 - Navigation
 - Architecture components (MVVM)
-- Search View
-- Recycler View
+- SearchView
+- RecyclerView
 - Repository
+
+Features I built:
+- Create and save note
+- Edit and delete note
+- Search note by note title or note body
+- Share note 
+- Sort note by title A-Z or Z-A
+- Sort note by created date (newest first or oldest first)
+- Sort note by updated date (newest first or oldest first)
